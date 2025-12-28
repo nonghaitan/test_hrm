@@ -14,4 +14,8 @@ public class DashboardPageObject extends SidePanelPageObject{
     public boolean isDashboardHeaderDisplayed() {
         return isElementDisplayed(driver, DashboardPageUI.DASHBOARD_HEADER);
     }
+
+    public String getLoggedInUserName() {
+        return getElementText(driver, DashboardPageUI.USER_PROFILE_NAME).trim();
+    }
 }

@@ -1,15 +1,22 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<suite name="POD_FOODS" parallel="false">
+<!--<?xml version="1.0" encoding="UTF-8"?>
+<suite name="HRM" parallel="false">
 
     <listeners>
-        <listener class-name="commons.MethodListener"/>
         <listener class-name="commons.AllureTestListener"/>
     </listeners>
 
-    <test name="Run on CHROME">
-        <parameter name="browser" value="chrome"/>
+    <test name="Orange UI">
         <classes>
-            <class name="podfoods.exam.SignIn_AddToCart"/>
+            <class name="runners.TestRunner"/>
+        </classes>
+    </test>
+</suite>-->
+
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="HRM Suite">
+    <test name="Orange UI Tests">
+        <classes>
+            <class name="runners.TestRunner"/>
         </classes>
     </test>
 </suite>

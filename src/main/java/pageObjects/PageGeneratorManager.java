@@ -7,9 +7,6 @@ public class PageGeneratorManager {
     private PageGeneratorManager() {
     }
 
-    public static AdminPageObject getAdminPage(WebDriver driver) {
-        return new AdminPageObject(driver);
-    }
 
     public static LoginPageObject getLoginPage(WebDriver driver) {
         return new LoginPageObject(driver);
@@ -17,6 +14,10 @@ public class PageGeneratorManager {
 
     public static DashboardPageObject getDashboardPage(WebDriver driver) {
         return new DashboardPageObject(driver);
+    }
+
+    public static AdminPageObject getAdminPage(WebDriver driver) {
+        return new AdminPageObject(driver);
     }
 
 

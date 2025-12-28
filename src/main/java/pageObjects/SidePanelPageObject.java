@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 import pageUIs.SidePanelPageUI;
 
 public class SidePanelPageObject extends BasePage {
-    private WebDriver driver;
+    protected WebDriver driver;
 
     public SidePanelPageObject(WebDriver driver) {
         this.driver = driver;

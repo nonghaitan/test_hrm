@@ -1,6 +1,7 @@
 package commons;
 
 import org.openqa.selenium.*;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -10,6 +11,7 @@ import java.util.List;
 public class BasePage {
 
     private long longTimeout = GlobalConstants.LONG_TIMEOUT;
+    private long shortTimeout = GlobalConstants.SHORT_TIMEOUT;
     private WebDriverWait explicitWait;
     private JavascriptExecutor jsExecutor;
     private WebElement element;
@@ -48,6 +50,11 @@ public class BasePage {
         getElement(driver, locatorType).click();
     }
 
+    public String getElementAttribute(WebDriver driver, String locator, String attributeName) {
+        return getElement(driver, locator).getAttribute(attributeName);
+    }
+
+
     protected void clickToElement(WebDriver driver, String locatorType, String... params) {
         locatorType = getDynamicXpath(locatorType, params);
         clickToElement(driver, locatorType);
@@ -55,7 +62,6 @@ public class BasePage {
 
     protected void sendKeyToElement(WebDriver driver, String locatorType, String value) {
         waitForElementVisible(driver, locatorType);
-        highlightElement(driver, locatorType);
         element = getElement(driver, locatorType);
         element.clear();
         element.sendKeys(value);
@@ -87,7 +93,13 @@ public class BasePage {
         }
     }
 
-
+    public void sleepInSecond(long second) {
+        try {
+            Thread.sleep(second * 1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
 
     protected boolean isElementDisplayed(WebDriver driver, String locatorType) {
         try {
@@ -101,6 +113,15 @@ public class BasePage {
         return getElement(driver, getDynamicXpath(locator, params)).isDisplayed();
     }
 
+    public void waitForElementInvisible(WebDriver driver, String locatorType) {
+        try {
+            explicitWait = new WebDriverWait(driver, Duration.ofSeconds(shortTimeout));
+            explicitWait.until(ExpectedConditions.invisibilityOfElementLocated(getByLocator(locatorType)));
+        }catch (Exception e) {
+
+        }
+
+    }
 
     protected void waitForElementVisible(WebDriver driver, String locatorType) {
         explicitWait = new WebDriverWait(driver, Duration.ofSeconds(longTimeout));
@@ -112,29 +133,14 @@ public class BasePage {
         explicitWait.until(ExpectedConditions.elementToBeClickable(getByLocator(locatorType)));
     }
 
+    protected void waitForElementAttributeNotEmpty(WebDriver driver, String locatorType, String attribute) {
+        explicitWait = new WebDriverWait(driver, Duration.ofSeconds(longTimeout));
+        explicitWait.until(d -> !getElement(driver, locatorType).getAttribute(attribute).isEmpty());
+    }
+
     public List<WebElement> waitForAllElementsPresence(WebDriver driver, String locator) {
         explicitWait = new WebDriverWait(driver, Duration.ofSeconds(longTimeout));
         return explicitWait.until(ExpectedConditions.presenceOfAllElementsLocatedBy((getByLocator(locator))));
-    }
-
-
-    protected void highlightElement(WebDriver driver, String locatorType) {
-        try {
-            jsExecutor = (JavascriptExecutor) driver;
-            element = getElement(driver, locatorType);
-            String originalStyle = element.getAttribute("style");
-            jsExecutor.executeScript(
-                    "arguments[0].setAttribute(arguments[1], arguments[2])",
-                    element, "style", "border: 2px solid red; border-style: dashed;");
-            jsExecutor.executeScript(
-                    "arguments[0].setAttribute(arguments[1], arguments[2])",
-                    element, "style", originalStyle);
-        } catch (Exception ignored) {}
-    }
-
-    protected void clickToElementByJS(WebDriver driver, String locatorType) {
-        jsExecutor = (JavascriptExecutor) driver;
-        jsExecutor.executeScript("arguments[0].click();", getElement(driver, locatorType));
     }
 }
 
