@@ -2,7 +2,7 @@
 <suite name="API Suite" verbose="1" parallel="false">
     <test name="API Tests">
         <classes>
-            <class name="runners.ApiTestRunner"/>
+            <class name="api.runners.APITestRunner"/>
         </classes>
     </test>
 </suite>

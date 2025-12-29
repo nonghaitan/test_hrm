@@ -1,107 +1,7 @@
-<!--
 <project>
     <modelVersion>4.0.0</modelVersion>
-    <groupId>orange</groupId>
-    <artifactId>orange-automation</artifactId>
-    <version>1.0</version>
-
-    <properties>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
-    </properties>
-
-    <dependencies>
-        &lt;!&ndash; Selenium &ndash;&gt;
-        <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-java</artifactId>
-            <version>4.25.0</version>
-        </dependency>
-
-        &lt;!&ndash; TestNG &ndash;&gt;
-        <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <version>7.10.2</version>
-        </dependency>
-
-        &lt;!&ndash; Lombok &ndash;&gt;
-        <dependency>
-            <groupId>org.projectlombok</groupId>
-            <artifactId>lombok</artifactId>
-            <version>1.18.34</version>
-            <scope>provided</scope>
-        </dependency>
-
-        &lt;!&ndash; Cucumber &ndash;&gt;
-        <dependency>
-            <groupId>io.cucumber</groupId>
-            <artifactId>cucumber-java</artifactId>
-            <version>7.18.0</version>
-        </dependency>
-
-        <dependency>
-            <groupId>io.cucumber</groupId>
-            <artifactId>cucumber-testng</artifactId>
-            <version>7.18.0</version>
-        </dependency>
-
-        &lt;!&ndash; Rest Assured &ndash;&gt;
-        <dependency>
-            <groupId>io.rest-assured</groupId>
-            <artifactId>rest-assured</artifactId>
-            <version>5.5.0</version>
-        </dependency>
-
-        &lt;!&ndash; JSON &ndash;&gt;
-        <dependency>
-            <groupId>org.json</groupId>
-            <artifactId>json</artifactId>
-            <version>20240303</version>
-        </dependency>
-
-        &lt;!&ndash; ExtentReports 5 &ndash;&gt;
-        <dependency>
-            <groupId>com.aventstack</groupId>
-            <artifactId>extentreports</artifactId>
-            <version>5.0.9</version>
-        </dependency>
-    </dependencies>
-
-    <build>
-        <plugins>
-            &lt;!&ndash; Surefire &ndash;&gt;
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.2.5</version>
-                <configuration>
-                    <suiteXmlFiles>
-                        <suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile>
-                    </suiteXmlFiles>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>io.cucumber</groupId>
-                <artifactId>cucumber-maven-plugin</artifactId>
-                <version>7.18.0</version>
-                <executions>
-                    <execution>
-                        <id>run-cucumber</id>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
-</project>
--->
-<project>
-    <modelVersion>4.0.0</modelVersion>
-    <groupId>orange</groupId>
-    <artifactId>orange-automation</artifactId>
+    <groupId>abbank-test</groupId>
+    <artifactId>abbank-test-automation</artifactId>
     <version>1.0</version>
 
     <properties>
@@ -168,21 +68,21 @@
 
     <build>
         <plugins>
-            <!-- Surefire plugin để chạy runner TestNG -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.2.5</version>
                 <configuration>
-                    <!-- Chạy runner UI -->
                     <includes>
-                        <include>**/runners/TestRunner.java</include>
-                        <include>**/runners/ApiTestRunner.java</include>
+                        <include>**/runners/*.java</include>
                     </includes>
+
                     <suiteXmlFiles>
-                        <suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile>
+                        <suiteXmlFile>src/test/resources/testng-ui.xml</suiteXmlFile>
                         <suiteXmlFile>src/test/resources/testng-api.xml</suiteXmlFile>
                     </suiteXmlFiles>
+
+                    <failIfNoTests>false</failIfNoTests>
                 </configuration>
             </plugin>
         </plugins>
