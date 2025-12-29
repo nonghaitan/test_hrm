@@ -1,4 +1,4 @@
-Test HRM UI – GitHub API Automation
+# Test HRM UI – GitHub API Automation
 
 This project contains **UI automation tests** for **OrangeHRM** and **API automation tests** for **GitHub (SeleniumHQ organization)**.
 
