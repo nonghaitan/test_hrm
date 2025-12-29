@@ -18,6 +18,10 @@ public class BasePage {
         return driver.findElement(getByLocator(locatorType));
     }
 
+    public List<WebElement> getListElement(WebDriver driver, String locatorType) {
+        return driver.findElements(getByLocator(locatorType));
+    }
+
     private By getByLocator(String locatorType) {
         By by;
         if (locatorType.startsWith("id=") || locatorType.startsWith("ID=") || locatorType.startsWith("Id=")) {
@@ -89,11 +93,7 @@ public class BasePage {
     }
 
     protected boolean isElementDisplayed(WebDriver driver, String locatorType) {
-        try {
-            return getElement(driver, locatorType).isDisplayed();
-        } catch (Exception e) {
-            return false;
-        }
+        return getElement(driver, locatorType).isDisplayed();
     }
 
     public boolean isElementDisplayed(WebDriver driver, String locator, String... params) {
@@ -103,6 +103,11 @@ public class BasePage {
     public void waitForElementInvisible(WebDriver driver, String locatorType) {
         explicitWait = new WebDriverWait(driver, Duration.ofSeconds(shortTimeout));
         explicitWait.until(ExpectedConditions.invisibilityOfElementLocated(getByLocator(locatorType)));
+    }
+
+    public void waitForElementInvisible(WebDriver driver, WebElement element) {
+        explicitWait = new WebDriverWait(driver, Duration.ofSeconds(shortTimeout));
+        explicitWait.until(ExpectedConditions.invisibilityOf(element));
     }
 
     protected void waitForElementVisible(WebDriver driver, String locatorType) {

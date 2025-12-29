@@ -2,7 +2,10 @@ package ui.pageObjects;
 
 import data.TestUserData;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import ui.pageUIs.AdminPageUI;
+
+import java.util.List;
 
 public class AdminPageObject extends SidePanelPageObject {
     private WebDriver driver;
@@ -65,21 +68,17 @@ public class AdminPageObject extends SidePanelPageObject {
     }
 
     public void searchUser(String userName) {
-        if(isElementDisplayed(driver, AdminPageUI.FORM_LOADER)){
-            waitForElementInvisible(driver, AdminPageUI.FORM_LOADER);
+        List<WebElement> loaders = getListElement(driver, AdminPageUI.FORM_LOADER);
+        for (WebElement loader : loaders) {
+            if (loader.isDisplayed()) {
+                waitForElementInvisible(driver, loader);
+            }
         }
 
         sendKeyToElement(driver, AdminPageUI.SEARCH_USERNAME, userName);
         clickToElement(driver, AdminPageUI.SEARCH_BUTTON);
-
-        if(isElementDisplayed(driver, AdminPageUI.FORM_LOADER)){
-            waitForElementInvisible(driver, AdminPageUI.FORM_LOADER);
-        }
     }
 
-    public boolean verifyUserInTable(String value) {
-        return isElementDisplayed(driver, AdminPageUI.DYNAMIC_RESULT_ROW, value);
-    }
 
     public boolean isRecordDisplaySuccessfully() {
         return isElementDisplayed(driver, AdminPageUI.RESULT_1_RECORD_FOUND);
@@ -87,5 +86,9 @@ public class AdminPageObject extends SidePanelPageObject {
 
     public boolean isHeaderDisplayed() {
         return isElementDisplayed(driver, AdminPageUI.ADMIN_HEADER);
+    }
+
+    public boolean verifyUserInTableFull(String username, String role, String employeeName, String status) {
+        return isElementDisplayed(driver, AdminPageUI.DYNAMIC_RESULT_ROW_FULL, username, role, employeeName, status);
     }
 }

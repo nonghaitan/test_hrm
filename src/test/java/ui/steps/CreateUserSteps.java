@@ -65,10 +65,15 @@ public class CreateUserSteps {
     @Then("The user should appear in result table")
     public void verifyUser() {
         UIExtentTestManager.getTest().info("Verify user appears in result table");
-        Assert.assertTrue(adminPage.verifyUserInTable(user.getUsername()), "Username not found");
-        Assert.assertTrue(adminPage.verifyUserInTable(user.getRole()), "Role not found");
-        Assert.assertTrue(adminPage.verifyUserInTable(user.getDisplayName()), "Employee name not found");
-        Assert.assertTrue(adminPage.verifyUserInTable(user.getStatus()), "Status not found");
+        Assert.assertTrue(
+                adminPage.verifyUserInTableFull(
+                        user.getUsername(),
+                        user.getRole(),
+                        user.getDisplayName(),
+                        user.getStatus()
+                ),
+                "User row not found with all expected values"
+        );
     }
 
     @Then("The user record found is displayed successfully")
