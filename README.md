@@ -1,57 +1,75 @@
-# Test HRM UI - GitHub API Automation
+Test HRM UI – GitHub API Automation
 
-This project contains **UI and API automation tests** for:
+This project contains **UI automation tests** for **OrangeHRM** and **API automation tests** for **GitHub (SeleniumHQ organization)**.
 
-- **OrangeHRM** (UI automation)
-- **GitHub REST API** (API automation for SeleniumHQ repositories)
+Built using:
 
-Implemented using **Java, Maven, Selenium, RestAssured, Cucumber (BDD)**, and **ExtentReport** for reporting.
+- **Java 17**
+- **Maven**
+- **Selenium WebDriver**
+- **RestAssured**
+- **Cucumber (BDD)**
+- **TestNG**
+- **Extent Reports**
 
 ---
 
-## **Setup Instructions**
+##  Setup Instructions
 
-1. **Install Java**
-    - Java 17 recommended: [Download Java](https://www.oracle.com/java/technologies/downloads/)
+### 1️⃣ Install Java
+Java 17 recommended  
+https://www.oracle.com/java/technologies/downloads/
 
-2. **Install Maven**
-    - [Install Maven](https://maven.apache.org/install.html)
+### 2️⃣ Install Maven  
+https://maven.apache.org/install.html
 
-3. **ChromeDriver**
-    - Download ChromeDriver compatible with your Chrome version: [ChromeDriver](https://chromedriver.chromium.org/downloads)
-    - Add ChromeDriver to your system PATH
+### 3️⃣ ChromeDriver
+Download version matching your Chrome  
+https://chromedriver.chromium.org/downloads  
+Add to **System PATH**
 
-4. **Clone the repository**
+### 4️⃣ Clone Repository
 ```bash
 git clone https://github.com/nonghaitan/test_hrm.git
-cd orange-automation
 ```
 
-5. **Install dependencies**
+### 5️⃣ Install Dependencies
 ```bash
 mvn clean install
 ```
 
-## **How to Run Test**
-1. **Run UI Tests Only**
+##  How to Run Tests
+### 1️⃣ Run UI Tests Only
 ```bash
 mvn clean test -Dtest=UITestRunner
 ```
-   - Report generated in target/extent-report/UI-Report.html
+   - Report:
+   ```bash
+   target/extent-report/UI-Report.html
+   ```
    - ![img.png](img.png)
+### 2️⃣ Run API Tests Only
 
-2. **Run API Tests Only**
 ```bash
-mvn clean test -Dtest=UITestRunner
+mvn clean test -Dtest=APITestRunner
 ```
-   - Report generated in target/extent-report/API-Report.html
+
+   - Report:
+   ```bash
+   target/extent-report/API-Report.html
+   ```
    - ![img_1.png](img_1.png)
 
-3. **Run All Tests (UI+API)**
+### 3️⃣ Run All Tests (UI + API)
+
 ```bash
 mvn clean test
 ```
-   - Report generated in target/extent-report/
+
+   - Reports are available in:
+   ```bash
+   target/extent-report/
+   ```
 
 ## **Test execution results**
    - Please check report in target/extent-report/
