@@ -6,8 +6,8 @@ public class GlobalConstants {
     public static final String UI_ADMIN_USER = "Admin";
     public static final String UI_ADMIN_PASSWORD = "admin123";
 
-    public static final long UI_LONG_TIMEOUT = 30;
-    public static final long UI_SHORT_TIMEOUT = 5;
+    public static final long UI_LONG_TIMEOUT = 20;
+    public static final long UI_SHORT_TIMEOUT = 7;
 
     //API
     public static final String API_GITHUB_BASE_URI = "https://api.github.com";
